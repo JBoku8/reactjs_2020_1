@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "name": "reactjs_2020_1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:JBoku8/reactjs_2020_1.git",
+  "author": "Jano Bokuchava <m.prog@yahoo.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html",
+    "dev": "parcel index.html"
+  }
+}

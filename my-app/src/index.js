@@ -1,17 +1,54 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+
+import "./index.css";
+import App from "./App";
+
+const MainApp = (
+  <div>
+    <h2>H2 Main App</h2>
+  </div>
+);
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("my-app")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// JSX Syntax
+// 1
+// const jsxExample = (
+//   <div id="jsx-id">
+//     <h1>H1 Title, ReactJS</h1>
+//   </div>
+// );
+
+// React Core
+// 2
+// const element = React.createElement(
+//   "div",
+//   {
+//     id: "test-div",
+//   },
+//   React.createElement("h1", null, "H1 Title, ReactJS")
+// );
+
+// Plain JS
+// 3
+// const div = document.createElement("div");
+// div.setAttribute("id", "custom-div");
+
+// const h1 = document.createElement("h1");
+// const textNode = document.createTextNode("H1 Title Plain Js");
+// h1.append(textNode);
+// div.appendChild(h1);
+
+// document.body.append(div);
+
+// document.addEventListener("click", () => {
+//   textNode.textContent = Date.now().toLocaleString();
+// });
+
+// ReactDOM.render(null, document.getElementById("my-app"));

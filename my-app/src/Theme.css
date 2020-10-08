@@ -1,0 +1,15 @@
+.container {
+    margin: 1rem;
+}
+
+.dark {
+    padding: 20px;
+    background-color: darkcyan;
+    color: #fff;
+}
+
+.light {
+    padding: 15px;
+    background-color: lightgreen;
+    color: #333;
+}

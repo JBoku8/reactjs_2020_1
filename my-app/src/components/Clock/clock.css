@@ -1,0 +1,20 @@
+.clock {
+    color: seagreen;
+    border: 6px solid #ccc;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hours {
+    color: red;
+}
+.minutes {
+    color: coral;
+}
+.seconds {
+    color: crimson;
+}

@@ -1,26 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Form from "../presentation/Form/Form";
 import Input from "../presentation/Input/Input";
+import PropTypes from "prop-types";
+
+import LocaleContext from "../../context/LocaleContext";
+
 // Services
 import {
   getUserSessionToken,
   login,
   setUserSessionToken,
   removeUserSessionToken,
+  loginAxios,
 } from "../../services/auth";
 
 import { LoginInputs } from "../../utils/inputs";
+import translation from "../../locale";
 
 import styles from "./Login.module.css";
 
-function Login(props) {
+function Login({ showRegister }) {
   const [isAuth, setIsAuth] = useState(false);
+  const { locale } = useContext(LocaleContext);
+  const [translate, setTranslate] = useState(translation[locale]);
 
   useEffect(() => {
     if (getUserSessionToken()) {
       setIsAuth(true);
     }
   }, []);
+
+  useEffect(() => {
+    setTranslate(translation[locale]);
+  }, [locale]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -38,6 +50,8 @@ function Login(props) {
     //   });
 
     const { response, error } = await login(loginData);
+
+    // loginAxios(loginData);
     if (!error) {
       setUserSessionToken(response["token"]);
       setIsAuth(true);
@@ -49,10 +63,6 @@ function Login(props) {
   const onLogOut = (event) => {
     removeUserSessionToken();
     setIsAuth(false);
-  };
-
-  const onSendSMS = (event) => {
-    alert("SMS SENT");
   };
 
   if (isAuth) {
@@ -83,18 +93,22 @@ function Login(props) {
         </label>
       </div> */}
       <button className="btn btn-lg btn-primary btn-block" type="submit">
-        Sign in
+        {translate.login.loginBtn}
       </button>
-
+      <hr />
       <button
-        className="btn btn-lg btn-primary btn-block"
+        className="btn btn-lg btn-secondary btn-block"
         type="button"
-        onClick={onSendSMS}
+        onClick={showRegister}
       >
-        Send SMS
+        {translate.login.registerBtn}
       </button>
     </Form>
   );
 }
+
+Login.propTypes = {
+  showRegister: PropTypes.func,
+};
 
 export default Login;

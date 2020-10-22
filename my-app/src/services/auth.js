@@ -1,4 +1,9 @@
+import axios from "axios";
+
 import { BASE_API_URL, USER_SESSION_TOKEN_KEY } from "../constants";
+
+axios.defaults.baseURL = BASE_API_URL;
+
 export const login = async (requestData) => {
   try {
     const response = await fetch(`${BASE_API_URL}/login`, {
@@ -23,6 +28,15 @@ export const login = async (requestData) => {
     }
   } catch (err) {
     console.error("ERROR [auth.js]@login", err);
+  }
+};
+
+export const loginAxios = async (requestData) => {
+  try {
+    const result = await axios.post(`login`, requestData);
+    console.log(result);
+  } catch (err) {
+    console.log(err);
   }
 };
 

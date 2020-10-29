@@ -1,6 +1,7 @@
 import React from "react";
-import Form from "../presentation/Form/Form";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import Form from "../presentation/Form/Form";
 
 function Registration({ showLogin }) {
   return (
@@ -10,13 +11,15 @@ function Registration({ showLogin }) {
         Register
       </button>
       <hr />
-      <button
+      <Link
         className="btn btn-lg btn-warning btn-block"
-        type="button"
-        onClick={showLogin}
+        to={{
+          pathname: "/login",
+          custom: "ULA LA",
+        }}
       >
         Sign In
-      </button>
+      </Link>
     </Form>
   );
 }

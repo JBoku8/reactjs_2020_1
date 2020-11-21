@@ -16,11 +16,22 @@ function Nav(props) {
         <NavLink to="/" className="nav-link" activeClassName="active" exact>
           Home
         </NavLink>
+        <NavLink
+          to="/reducer-component"
+          className="nav-link"
+          activeClassName="active"
+          exact
+        >
+          Reducer Component
+        </NavLink>
         <NavLink to="/login" className="nav-link" activeClassName="active">
           Login
         </NavLink>
         <NavLink to="/register" className="nav-link" activeClassName="active">
           Register
+        </NavLink>
+        <NavLink to="/lazy-route" className="nav-link" activeClassName="active">
+          Lazy Page
         </NavLink>
         {authed && (
           <NavLink to="/profile" className="nav-link" activeClassName="active">

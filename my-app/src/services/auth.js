@@ -49,3 +49,16 @@ export const getUserSessionToken = () => {
 export const removeUserSessionToken = () => {
   sessionStorage.removeItem(USER_SESSION_TOKEN_KEY);
 };
+
+// HTTP Verbs
+// GET mysite.com/users?limit=20&page=2
+// GET mysite.com/users/:id => mysite.com/users/7365375 => userDetailFunction()
+// POST mysite.com/users => postFunction()
+// DELETE mysite.com/users/:id => mysite.com/users/7365375 deleteFunction()
+// PUT mysite.com/users/:id => mysite.com/users/7365375 putFunction()
+// PATCH mysite.com/users/:id => mysite.com/users/7365375 patchFunction()
+
+// GET mysite.com/user-detail/:id
+// POST mysite.com/user/create-user
+// POST mysite.com/user/remove-user
+// POST mysite.com/user/update-user

@@ -1,9 +1,13 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
+import Profile from "./components/Profile/Profile";
 import Registration from "./components/Registration/Registration";
+import ReducerComponent from "./components/ReducerComponent/ReducerComponent";
+// import LazyComponent from "./components/LazyComponent/LazyComponent";
+
 import Nav from "./components/presentation/Nav/Nav";
 import NotFound from "./components/presentation/NotFound/NotFound";
 import PrivateRoute from "./components/presentation/PrivateRoute/PrivateRoute";
@@ -13,8 +17,13 @@ import AuthContext, {
   initialContext as initialAuthContext,
 } from "./context/AuthContext";
 
-import "./App.css";
 import { getUserSessionToken } from "./services/auth";
+
+import "./App.css";
+
+const LazyComponent = React.lazy(() => {
+  return import("./components/LazyComponent/LazyComponent");
+});
 
 function App() {
   // const [showLoginForm, setShowLoginForm] = useState(true);
@@ -62,6 +71,9 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
+            <Route path="/reducer-component" exact>
+              <ReducerComponent />
+            </Route>
 
             <Route path="/login">
               <Login />
@@ -71,11 +83,19 @@ function App() {
               <Registration />
             </Route>
 
+            {/* <Route path="/lazy-route">
+              <LazyComponent />
+            </Route> */}
+            <Route path="/lazy-route">
+              <Suspense fallback={<h1>Lazy Component is loading...</h1>}>
+                <LazyComponent />
+              </Suspense>
+            </Route>
+
             <PrivateRoute
               to="/profile"
-              render={(props) => {
-                return <h2>Profile</h2>;
-              }}
+              Component={Profile}
+              title="Profile Page Title"
             />
 
             <Route path="*">

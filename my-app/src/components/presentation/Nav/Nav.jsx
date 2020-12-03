@@ -24,6 +24,14 @@ function Nav(props) {
         >
           Reducer Component
         </NavLink>
+        <NavLink
+          to="/redux-component"
+          className="nav-link"
+          activeClassName="active"
+          exact
+        >
+          Redux Component
+        </NavLink>
         <NavLink to="/login" className="nav-link" activeClassName="active">
           Login
         </NavLink>

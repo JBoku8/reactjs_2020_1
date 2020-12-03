@@ -1,16 +1,11 @@
 import React, { useState, useContext, useEffect, Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 
-import Home from "./components/Home/Home";
-import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
-import Registration from "./components/Registration/Registration";
-import ReducerComponent from "./components/ReducerComponent/ReducerComponent";
-// import LazyComponent from "./components/LazyComponent/LazyComponent";
-
-import Nav from "./components/presentation/Nav/Nav";
 import NotFound from "./components/presentation/NotFound/NotFound";
 import PrivateRoute from "./components/presentation/PrivateRoute/PrivateRoute";
+
+import Nav from "./components/presentation/Nav/Nav";
 
 import LocaleContext from "./context/LocaleContext";
 import AuthContext, {
@@ -19,11 +14,21 @@ import AuthContext, {
 
 import { getUserSessionToken } from "./services/auth";
 
+import { routes } from "./routes";
+
 import "./App.css";
 
 const LazyComponent = React.lazy(() => {
   return import("./components/LazyComponent/LazyComponent");
 });
+
+function RouteRenderer({ route }) {
+  return (
+    <Route path={route.path} exact={route.exact}>
+      {<route.component />}
+    </Route>
+  );
+}
 
 function App() {
   // const [showLoginForm, setShowLoginForm] = useState(true);
@@ -68,39 +73,25 @@ function App() {
         <hr />
         <div className="container text-center">
           <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <Route path="/reducer-component" exact>
-              <ReducerComponent />
-            </Route>
+            {routes.map((route, index) => {
+              return (
+                <Route path={route.path} exact={route.exact} key={route.path}>
+                  {<route.component />}
+                </Route>
+              );
+            })}
 
-            <Route path="/login">
-              <Login />
-            </Route>
-
-            <Route path="/register">
-              <Registration />
-            </Route>
-
-            {/* <Route path="/lazy-route">
-              <LazyComponent />
-            </Route> */}
-            <Route path="/lazy-route">
-              <Suspense fallback={<h1>Lazy Component is loading...</h1>}>
-                <LazyComponent />
-              </Suspense>
-            </Route>
-
-            <PrivateRoute
+            {/* <PrivateRoute
               to="/profile"
               Component={Profile}
               title="Profile Page Title"
-            />
+            /> */}
 
-            <Route path="*">
-              <NotFound />
-            </Route>
+            {/* <Route path="/lazy-route">
+              <Suspense fallback={<h1>Lazy Component is loading...</h1>}>
+                <LazyComponent />
+              </Suspense>
+            </Route> */}
           </Switch>
         </div>
       </AuthContext.Provider>

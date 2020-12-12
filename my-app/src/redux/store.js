@@ -2,7 +2,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 // import reduxLogger from "redux-logger";
 import logger from "./middleware/logger";
-import { rootReducer, errorReducer } from "./reducers";
+import { rootReducer, errorReducer, languageReducer } from "./reducers";
 
 const middlewares = [logger, thunk];
 
@@ -11,6 +11,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const combinedReducers = combineReducers({
   app: rootReducer,
   errors: errorReducer,
+  lang: languageReducer,
 });
 
 const store = createStore(
